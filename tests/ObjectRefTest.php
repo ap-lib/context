@@ -5,7 +5,7 @@ namespace AP\Normalizer\Tests;
 use AP\Context\Context;
 use PHPUnit\Framework\TestCase;
 
-class User
+class User2
 {
     public function __construct(
         public int    $id,
@@ -19,53 +19,53 @@ final class ObjectRefTest extends TestCase
 {
     public function testObjCopy(): void
     {
-        $user = new User(1, "a@b.com");
+        $user = new User2(1, "a@b.com");
 
         $context = new Context();
         $context->set($user);
 
         // if you want to copy an object, do clone
-        $copy     = clone $context->getObject(User::class);
+        $copy     = clone $context->getObject(User2::class);
         $copy->id = 2;
 
         $this->assertEquals(
-            new User(1, "a@b.com"),
-            $context->getObject(User::class)
+            new User2(1, "a@b.com"),
+            $context->getObject(User2::class)
         );
     }
 
     public function testObjRef(): void
     {
-        $user = new User(1, "a@b.com");
+        $user = new User2(1, "a@b.com");
 
         $context = new Context();
         $context->set($user);
 
-        $ref     = $context->getObject(User::class);
+        $ref     = $context->getObject(User2::class);
         $ref->id = 2;
 
         $this->assertEquals(
-            new User(2, "a@b.com"),
-            $context->getObject(User::class)
+            new User2(2, "a@b.com"),
+            $context->getObject(User2::class)
         );
     }
 
 
     public function testObjRefReset(): void
     {
-        $user = new User(1, "a@b.com");
+        $user = new User2(1, "a@b.com");
 
         $context = new Context();
         $context->set($user);
 
-        $ref = $context->getObject(User::class);
+        $ref = $context->getObject(User2::class);
 
         // it will no works, because you reset ref to object to a new link to new object
-        $ref = new User(111, 'new@gmail.com');
+        $ref = new User2(111, 'new@gmail.com');
 
         $this->assertEquals(
-            new User(1, "a@b.com"),
-            $context->getObject(User::class)
+            new User2(1, "a@b.com"),
+            $context->getObject(User2::class)
         );
     }
 }
