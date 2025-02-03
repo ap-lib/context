@@ -1,0 +1,28 @@
+{
+  "name": "ap-lib/context",
+  "description": "The Context library provides a lightweight context storage system for managing and retrieving shared data across different parts of an application. It supports dynamic storage, object retrieval, and type enforcement.",
+  "type": "library",
+  "homepage": "https://github.com/ap-lib/context",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Anton Panfilov"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "AP\\Context\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "AP\\Context\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "php": "^8.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "10.5.*"
+  }
+}
