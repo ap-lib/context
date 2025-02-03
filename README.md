@@ -94,6 +94,62 @@ $retrievedData = $context->get("user");
 var_dump($retrievedData === $userData); // true
 ```
 
+## Working with References
+### Working with Array References
+When retrieving an array by reference, modifications to the retrieved array will affect the stored array.
+```php
+$context = new Context();
+
+$name = "original";
+$original = ["foo" => "boo"];
+
+$context->set($original, $name);
+
+// Get a reference to the stored array
+$ref = &$context->get($name);
+$ref["foo"] = "changed";
+
+// The original stored array is now modified
+var_dump($context->get($name)); 
+// Output: ["foo" => "changed"]
+```
+
+Fully Replacing an Array via Reference:
+```php
+$name = "original";
+$original = ["foo" => "boo"];
+
+$context->set($original, $name);
+
+// Get a reference to the stored array
+$ref = &$context->get($name);
+$ref = ["hello" => "world"];
+
+// The original stored array is now modified
+var_dump($context->get($name)); 
+// Output: ["hello" => "world"]
+```
+
+### Working with Object References
+hen retrieving an object, modifications to its properties affect the stored object.
+```php
+$context = new Context();
+
+$user = new User(1, "a@b.com");
+
+$context->set($user);
+
+// Get a reference to the stored object
+$ref = $context->getObject(User::class);
+$ref->id = 2;
+
+// The original stored object is now modified
+var_dump($context->getObject(User::class)); 
+// Output: User { id: 2, email: "a@b.com" }
+```
+
+
+
 ## Error Handling
 
 ### Type Enforcement Errors
