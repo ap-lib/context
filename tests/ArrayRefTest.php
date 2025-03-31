@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace AP\Normalizer\Tests;
+namespace AP\Context\Tests;
 
 use AP\Context\Context;
 use PHPUnit\Framework\TestCase;
