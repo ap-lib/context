@@ -2,7 +2,7 @@
 
 namespace AP\Context;
 
-class ContextForObject
+trait ContextForObject
 {
     private ?Context $_context = null;
 
