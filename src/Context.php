@@ -9,6 +9,15 @@ class Context
     protected array $hashmap = [];
 
     /**
+     * @param string $name
+     * @return bool
+     */
+    public function has(string $name): bool
+    {
+        return key_exists($name, $this->hashmap);
+    }
+
+    /**
      * Retrieves a reference to a stored value by its name
      *
      * This method allows accessing stored data within the context by its name
